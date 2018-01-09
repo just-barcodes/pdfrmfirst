@@ -10,7 +10,11 @@ fi
 
 pdfseparate -f 2 ${inputname} ${inputname}---%d.pdf
 sfiles=$(ls -v ${inputname}---*.pdf)
+
 pdfunite ${sfiles} ${inputname}-1.pdf
+### alternative:
+# pdfjoin ${sfiles} --outfile ${inputname}-1.pdf
+
 rm ${inputname}---*.pdf
 
 echo "Success"
