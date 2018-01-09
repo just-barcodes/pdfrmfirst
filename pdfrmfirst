@@ -1,0 +1,16 @@
+#! /bin/bash
+
+inputname=${1}
+fcount=$(ls ${inputname}* | wc -l)
+
+if [ ${fcount} -ne 1 ]; then
+    echo "Error (file with same name already exists?)";
+    exit 1
+fi
+
+pdfseparate -f 2 ${inputname} ${inputname}---%d.pdf
+sfiles=$(ls -v ${inputname}---*.pdf)
+pdfunite ${sfiles} ${inputname}-1.pdf
+rm ${inputname}---*.pdf
+
+echo "Success"
