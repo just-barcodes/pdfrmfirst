@@ -1,6 +1,9 @@
 #! /bin/bash
 
-inputname=${1}
+orig_inputname=${1}
+inputname=$(echo ${orig_inputname} | tr -d " ")
+cp "${orig_inputname}" "${inputname}"
+
 fcount=$(ls ${inputname}* | wc -l)
 
 if [ ${fcount} -ne 1 ]; then
